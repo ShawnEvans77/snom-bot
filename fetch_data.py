@@ -13,6 +13,7 @@ class FetchData:
         '''Returns information on a given Pokemon.'''
         
         answer = ""
+        total = 0
 
         print(pokemon)
 
@@ -27,6 +28,9 @@ class FetchData:
 
             for i in range(len(data)):
                 answer += f"{FetchData.stat_names[i]}: {data[i]['base_stat']}\n"
+                total += data[i]['base_stat']
+
+            answer += f"BST: {total}"
 
         else:
 
