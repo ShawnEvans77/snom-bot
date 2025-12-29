@@ -14,19 +14,18 @@ intents = discord.Intents.default()
 intents.message_content = True
 intents.members = True
 
-bot = commands.Bot(command_prefix='!', intents=intents)
+bot = commands.Bot(command_prefix='/', intents=intents)
 
 @bot.event
 async def on_ready():
-    print(f"we are ready to go in, {bot.user.name}")
+    print(f"We are ready to go in, {bot.user.name}!")
 
 #!dt
-
 @bot.command()
 async def dt(ctx, *, pokemon):
 
     if " " in pokemon.strip():
-        await ctx.send("there are no pokemon with first and last names")
+        await ctx.send("Please do not put a space in the Pokemon's name.")
     else:
         await ctx.send(f.FetchData().dt(pokemon))
 

@@ -5,7 +5,6 @@ class FetchData:
 
     stat_names = ["HP", "ATK", "DEF", "SP. ATK", "SP. DEF", "SPEED"]
 
-
     def __init__(self):
         self.base_url = "https://pokeapi.co/api/v2"
 
@@ -15,8 +14,6 @@ class FetchData:
         answer = ""
         total = 0
 
-        print(pokemon)
-
         url = f"{self.base_url}/pokemon/{pokemon}"
 
         response = requests.get(url)
@@ -24,13 +21,15 @@ class FetchData:
         if response.status_code == 200:
 
             data = response.json()['stats']
-            answer += f"{pokemon}'s stats are as follows: \n"
+            answer += "----------------------------------\n"
+            answer += f"**{pokemon.title()}**'s stats are as follows: \n"
 
             for i in range(len(data)):
                 answer += f"{FetchData.stat_names[i]}: {data[i]['base_stat']}\n"
                 total += data[i]['base_stat']
 
-            answer += f"BST: {total}"
+            answer += f"BST: {total}\n"
+            answer += "----------------------------------"
 
         else:
 
