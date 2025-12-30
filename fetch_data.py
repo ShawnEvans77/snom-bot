@@ -1,5 +1,6 @@
 import requests
 import pokemon_list as pl
+import item_list as il
 
 class FetchData:
     '''The Fetch Data class is a wrapper for PokeAPI.'''
@@ -17,6 +18,10 @@ class FetchData:
 
         data = response.json()['stats']
 
+        types = response.json()['types']
+
+        print(types)
+
         answer += "----------------------------------\n"
         answer += f"**{pokemon.title()}** \n\n"
         
@@ -27,13 +32,18 @@ class FetchData:
             total += data[i]['base_stat']
 
         answer += " | ".join(stats)
-        answer += f"\n\n**BST**: {total}\n"
+        answer += f" | **BST**: {total}\n"
 
         answer += "----------------------------------"
         return answer
     
     def dt_item(self, item: str, response):
-        return response.json()['effect_entries'][0]['effect']
+        answer = ""
+        answer += "----------------------------------\n"
+        answer += f"{response.json()['effect_entries'][0]['effect']}\n"
+        answer += "----------------------------------\n"
+
+        return answer
     
     def dt_ability(self, ability: str, response):
         pass
@@ -48,7 +58,6 @@ class FetchData:
 
         if token in mons:
 
-            response = requests.get(url)
             return self.dt_pokemon(token, requests.get(url+token))
         
         elif len(mons.close_match(token)) >= 1:
@@ -59,10 +68,20 @@ class FetchData:
             answer += self.dt_pokemon(closest_match, requests.get(url+closest_match))
             return answer
                 
-        url = f"{self.base_url}/item/{token}"
-        response = requests.get(url)
+        url = f"{self.base_url}/item/"
 
-        if response.status_code == 200:
-            return self.dt_item(token, response)
-                
+        items = il.ItemList()
+
+        if token in items:
+
+            return self.dt_item(token, requests.get(url+token))
+        
+        elif len(items.close_match(token)) >= 1:
+
+            closest_match = items.close_match(token)[0]
+            answer = ""
+            answer += f"wth is {token} 😹. did u mean {closest_match}?\n"
+            answer += self.dt_item(closest_match, requests.get(url+closest_match))
+            return answer
+   
         return "i don't even know what this is gang try again 😹"
