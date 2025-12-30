@@ -1,6 +1,6 @@
 # Marnie Bot 
 
-![usage][https://github.com/ShawnEvans77/marnie-bot/blob/main/introductory%20image.png?raw=true]
+<img src="https://github.com/ShawnEvans77/marnie-bot/blob/main/introductory%20image.png?raw=true"></img>
 
 Marnie Bot is a Discord bot that allows you to fetch data on Pokemon.
 
