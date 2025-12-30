@@ -5,7 +5,7 @@ from thefuzz import fuzz
 class ItemList:
 
     def __init__(self):
-        self.df = pandas.read_csv('items.csv')
+        self.df = pandas.read_csv('assets/items.csv')
         self.list = self.df['identifier'].values.tolist()
 
     def exists(self, pokemon):

@@ -20,11 +20,17 @@ class FetchData:
 
         types = response.json()['types']
 
-        print(types)
-
         answer += "----------------------------------\n"
-        answer += f"**{pokemon.title()}** \n\n"
-        
+        answer += f"**{pokemon.title()}** - "
+
+        type_1 = types[0]['type']['name'].title()
+
+        if len(types) == 2: 
+            type_2 = types[1]['type']['name'].title()
+            answer += f" _{type_1}_/_{type_2}_\n"
+        else:
+            answer += f"_{type_1}_\n"
+
         stats = []
 
         for i in range(len(FetchData.stat_names)):

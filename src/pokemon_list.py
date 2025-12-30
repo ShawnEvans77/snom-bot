@@ -5,7 +5,7 @@ from thefuzz import fuzz
 class PokemonList:
 
     def __init__(self):
-        self.df = pandas.read_csv('pokemon.csv')
+        self.df = pandas.read_csv('assets/pokemon.csv')
         self.list = self.df['identifier'].values.tolist()
 
     def exists(self, pokemon):
@@ -16,4 +16,5 @@ class PokemonList:
 
     def close_match(self, incorrect):
         closest = [pokemon for pokemon in self.list if fuzz.ratio(incorrect.lower(), pokemon) >= 65]
+
         return closest
