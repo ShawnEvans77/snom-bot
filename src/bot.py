@@ -8,6 +8,9 @@ import fetch_data as f
 class Bot:
     
     def __init__(self):
+        '''Creates a bot. Please note - DISCORD_ENV is not included in this repo, because I don't wanna give out bot access for free!'''
+        '''If you wanna fork my project, please remember to not commit your .env file to the repo! :3'''
+
         load_dotenv()
         self.token = os.getenv('DISCORD_ENV')
 
@@ -31,4 +34,6 @@ class Bot:
             await ctx.send(self.fetcher.dt(query))
 
     def start(self):
+        '''Executes the bot.'''
+
         self.bot.run(self.token, log_handler=self.handler, log_level=logging.DEBUG)

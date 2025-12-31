@@ -3,7 +3,13 @@ import numpy
 from thefuzz import fuzz
 
 class ItemList:
-    '''The Item List stores all items from all Pokemon Games.'''
+    '''The Item List stores all items from all Pokemon Games.
+    
+    Attributes:
+        THRESHOLD (int) - How close a user has to be for the "did you mean?" suggestion to work.
+        df (pandas dataframe) - The result of reading the item CSV.
+        list (list) - A list of items from all Pokemon games.  
+    '''
 
     THRESHOLD = 70
 
