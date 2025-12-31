@@ -3,6 +3,13 @@ import numpy
 from thefuzz import fuzz
 
 class Pokedex:
+    '''
+    The PokeDex class is an abstraction of a Pandas Table containing information on all of the Pokemon.
+
+    Attributes:
+        THRESHOLD (int) - A crucial variable that assists our fuzzy matching algorithim. The higher it is, the more precise
+        queries have to be for the 'did you mean this Pokemon' suggestion to work. 
+    '''
 
     THRESHOLD = 80
 
