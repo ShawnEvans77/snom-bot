@@ -57,6 +57,8 @@ class FetchData:
 
     def dt_move(self, move: str, move_list, response):
 
+        print(move)
+
         answer = ""
 
         answer += f"**{move.title()}** - "
@@ -123,7 +125,8 @@ class FetchData:
         if query in moves:
             return self.dt_move(query, moves, requests.get(move_url+query))
         elif moves.close_match(query) is not None:
+            print("closest match subroutine")
             closest_match = moves.close_match(query)
-            return f"wth is {query} 😹. did u mean {closest_match}?\n" + self.dt_move(closest_match, moves, requests.get(item_url+closest_match))
+            return f"wth is {query} 😹. did u mean {closest_match}?\n" + self.dt_move(closest_match, moves, requests.get(move_url+closest_match))
 
         return "i don't even know what this is gang try again 😹"
