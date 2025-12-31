@@ -6,7 +6,7 @@ import os
 import fetch_data as f
 
 class Bot:
-
+    
     def __init__(self):
         load_dotenv()
         self.token = os.getenv('DISCORD_ENV')
@@ -28,12 +28,6 @@ class Bot:
         @self.bot.command()
         async def dt(ctx, *, query):
 
-            # pokemon = pokemon.strip()
-            # pokemon = pokemon.replace(" ", "-")
-
-            # if pokemon.split("-")[0] == "mega":
-            #     pokemon = pokemon.split("-")[1] + "-" + pokemon.split("-")[0]
-            
             await ctx.send(self.fetcher.dt(query))
 
     def start(self):

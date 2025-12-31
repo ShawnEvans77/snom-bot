@@ -24,17 +24,22 @@ class FetchData:
         answer += f"**{pokemon.title()}** - "
 
         type_1 = types[0]['type']['name'].title()
+        answer += f"_{type_1}_"
 
         if len(types) == 2: 
             type_2 = types[1]['type']['name'].title()
-            answer += f" _{type_1}_/_{type_2}_\n"
-        else:
-            answer += f"_{type_1}_\n"
+            answer += f" /_{type_2}_"
+
+        answer += "\n"
 
         stats = []
 
         for i in range(len(FetchData.stat_names)):
-            stats.append(f"**{FetchData.stat_names[i]}**: {data[i]['base_stat']}")
+            stat_name = FetchData.stat_names[i]
+            stat_num = data[i]['base_stat']
+
+            stats.append(f"**{stat_name}**: {stat_num}")
+
             total += data[i]['base_stat']
 
         answer += " | ".join(stats)
@@ -42,18 +47,16 @@ class FetchData:
 
         return self.beautify(answer)
     
-    def dt_item(self, item: str, response):
-        answer = ""
-        answer += "----------------------------------\n"
-        answer += f"{response.json()['effect_entries'][0]['effect']}\n"
-        answer += "----------------------------------\n"
-
-        return answer
+    def dt_item(self, response):
+        item_desc = f"{response.json()['effect_entries'][0]['effect']}\n"
+        return self.beautify(item_desc)
     
     def dt_ability(self, ability: str, response):
         pass
 
     def sanitize(self, token) -> str:
+        '''Removes trailing spaces, replaces spaces with dashes.'''
+
         token = token.strip().replace(" ", "-")
         tokens = token.split("-")
 
@@ -88,13 +91,9 @@ class FetchData:
         item_url = f"{self.base_url}/item/"
 
         if query in items:
-            return self.dt_item(query, requests.get(item_url+query))
-        elif il.close_match(query) is not None:
-            closest_match = il.close_match(query)
-            return f"wth is {query} 😹. did u mean {closest_match}?\n" + self.dt_pokemon(closest_match, requests.get(poke_url+closest_match))
+            return self.dt_item(requests.get(item_url+query))
+        elif items.close_match(query) is not None:
+            closest_match = items.close_match(query)
+            return f"wth is {query} 😹. did u mean {closest_match}?\n" + self.dt_item(requests.get(item_url+closest_match))
         
         return "i don't even know what this is gang try again 😹"
-    
-x = FetchData()
-
-print(x.dt("flame orb"))

@@ -4,7 +4,7 @@ from thefuzz import fuzz
 
 class Pokedex:
 
-    THRESHOLD = 65
+    THRESHOLD = 80
 
     def __init__(self):
         self.df = pandas.read_csv('assets/pokemon.csv')
@@ -13,12 +13,16 @@ class Pokedex:
         self.num_pokemon = len(self.list) + 1
 
     def exists(self, pokemon):
+        '''Returns if the input Pokemon exists, done without magic method dunder.'''
         return pokemon.lower() in self.list
     
     def __contains__(self, pokemon):
+        '''Returns if the input Pokemon exists, magic method that allows for interaction with Python in operator.'''
         return pokemon.lower() in self.list
 
     def close_match(self, incorrect) -> str:
+        '''Returns the closest match to the input string. Useful for situations where the user mistypes a Pokemon.'''
+
         closest_val = 0
         closest_mon = None
 
@@ -33,6 +37,8 @@ class Pokedex:
         return closest_mon
     
     def by_number(self, num_str: str) -> str:
+        '''Returns a Pokemon based on its dex number. Returns none if input string is not numeric or out of bounds.'''
+    
         if not num_str.isnumeric():
             return None
         
