@@ -1,6 +1,6 @@
 # marnie bot 👢
 
-Marnie Bot is a Discord bot that allows you to fetch data on Pokemon and Pokemon items. No vibe coding was used in this project. This isn't a ChatGPT wrapper, all code is originally written by me. It is called Marnie Bot because who wouldn't want to be a part of Team Yell?
+Marnie Bot is a Discord bot that allows you to fetch data on Pokemon and Pokemon items. No vibe coding was used in this project and this isn't a ChatGPT wrapper. It is called Marnie Bot because who wouldn't want to be a part of Team Yell?
 
 Feel free to clone the source code to set up your own version of the bot.
 
