@@ -102,8 +102,8 @@ class FetchData:
         token = token.strip().lower().replace(" ", "-")
         tokens = token.split("-")
 
-        if tokens[0] == "mega":
-            return tokens[1] + "-" + tokens[0]
+        if tokens[0] == "mega" or tokens[0] == "primal":
+            return tokens[1] + "-" + tokens[0]            
         
         return token
     
