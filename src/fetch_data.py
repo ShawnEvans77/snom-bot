@@ -16,7 +16,7 @@ class FetchData:
     move_url = f"{base_url}/move/"
     ability_url = f"{base_url}/ability/"
 
-    modifiers = ("hisui", "mega", "primal", "origin", "galar")
+    modifiers = ("hisui", "mega", "primal", "origin", "galar", "alola")
 
     LINE_LENGTH = 35
 
