@@ -11,7 +11,7 @@ The bot is mostly hosted on my own machine, but I am looking for proper hosting.
 
 ## Installation
 
-Feel free to install her at this [link](https://discord.com/oauth2/authorize?client_id=1455036822014001168&permissions=68608&integration_type=0&scope=bot).
+Feel free to install her at this [link](https://discord.com/oauth2/authorize?client_id=1455036822014001168&permissions=68608&integration_type=0&scope=bot). The bot can run in servers or direct messages.
 
 Or, alternatively, if you desire to host an instance of herself to customize her to your liking, do:
 
