@@ -16,6 +16,8 @@ class FetchData:
     move_url = f"{base_url}/move/"
     ability_url = f"{base_url}/ability/"
 
+    modifiers = ("hisui", "mega", "primal", "origin", "galar")
+
     LINE_LENGTH = 35
 
     HR = '-' * LINE_LENGTH
@@ -128,7 +130,7 @@ class FetchData:
         token = token.strip().lower().replace(" ", "-")
         tokens = token.split("-")
 
-        if tokens[0] == "mega" or tokens[0] == "primal":
+        if tokens[0] in FetchData.modifiers:
             return tokens[1] + "-" + tokens[0]            
         
         return token
