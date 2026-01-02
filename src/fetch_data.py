@@ -16,7 +16,9 @@ class FetchData:
     move_url = f"{base_url}/move/"
     ability_url = f"{base_url}/ability/"
 
-    HR = '-' * 35
+    LINE_LENGTH = 35
+
+    HR = '-' * LINE_LENGTH
 
     def __init__(self):
         pass
