@@ -16,6 +16,8 @@ class FetchData:
     move_url = f"{base_url}/move/"
     ability_url = f"{base_url}/ability/"
 
+    HR = '-' * 35
+
     def __init__(self):
         pass
 
@@ -29,6 +31,7 @@ class FetchData:
 
         data = json['stats']
         types = json['types']
+        abilities = json['abilities']
 
         answer += f"**{pokemon.title()}** - "
 
@@ -37,7 +40,7 @@ class FetchData:
 
         if len(types) == 2: 
             type_2 = types[1]['type']['name'].title()
-            answer += f" /_{type_2}_"
+            answer += f"/_{type_2}_"
 
         answer += "\n"
 
@@ -54,18 +57,31 @@ class FetchData:
         answer += " | ".join(stats)
         answer += f" | **BST**: {total}\n"
 
+        for i in range(len(abilities)):
+
+            ability_label = f"**Ab. {i+1}**" if not abilities[i]['is_hidden'] else "**HA**"
+            answer += f"{ability_label}: {self.format_response(abilities[i]['ability']['name'])}"
+
+            if i != len(abilities) - 1:
+                answer += " | "
+
+        if not abilities:
+            answer += "**Ab. 1**: N/A"
+
+        answer += "\n"
+
         return self.beautify(answer)
     
-    def dt_item(self, item: str, response):
+    def dt_item(self, item: str, response) -> str:
         answer = ""
-        answer += f"**{self.format_query(item)}\n**"
+        answer += f"**{self.format_response(item)}\n**"
         answer += f"{response.json()['effect_entries'][0]['effect']}\n"
         return self.beautify(answer)
     
-    def dt_move(self, move: str, move_list, response):
+    def dt_move(self, move: str, move_list, response) -> str:
 
         answer = ""
-        answer += f"**{self.format_query(move)}** - "
+        answer += f"**{self.format_response(move)}** - "
 
         accuracy = move_list.get_accuracy(move)
 
@@ -90,7 +106,7 @@ class FetchData:
 
     def dt_ability(self, ability: str, ability_list, response):
         answer = ""
-        answer += f"**{self.format_query(ability)}** "
+        answer += f"**{self.format_response(ability)}** "
         answer += f"- **Generation**: {ability_list.get_generation(ability)}\n"
 
         try:
@@ -100,10 +116,11 @@ class FetchData:
 
         return self.beautify(answer)
 
-    def format_query(self, query):
+    def format_response(self, query:str) -> str:
+        '''PokeAPI can return String names weird. This gets rid of pesky dashes while also titling Strings.'''
         return query.replace("-", " ").title()
 
-    def sanitize(self, token) -> str:
+    def sanitize(self, token: str) -> str:
         '''Removes trailing spaces, replaces spaces with dashes.'''
 
         token = token.strip().lower().replace(" ", "-")
@@ -116,7 +133,8 @@ class FetchData:
     
     def beautify(self, output):
         '''Helper method to print bot output easily.'''
-        return "----------------------------------\n" + output + "----------------------------------\n"
+
+        return f"{FetchData.HR}\n" + output + f"{FetchData.HR}\n"
 
     def dt(self, query):
 
