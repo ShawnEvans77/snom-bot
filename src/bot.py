@@ -33,7 +33,6 @@ class Bot:
 
         @self.bot.command()
         async def dt(ctx, *, query):
-
             await ctx.send(self.fetcher.dt(query))
 
     def start(self):

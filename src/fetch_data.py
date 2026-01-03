@@ -5,7 +5,7 @@ import move_list as ml
 import ability_list as al
 
 class FetchData:
-    '''The Fetch Data class is a wrapper for PokeAPI.'''
+    '''The Fetch Data class is a wrapper for PokeAPI. It is the primary way our bot finds information on Pokemon.'''
 
     stat_names = ["HP", "ATK", "DEF", "SP. ATK", "SP. DEF", "SPEED"]
 
