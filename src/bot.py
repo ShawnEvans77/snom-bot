@@ -30,7 +30,6 @@ class Bot:
             print(f"marnie bot fully operational! <3")
             print(f"-------------------------------")
 
-
         @self.bot.command()
         async def dt(ctx, *, query):
             await ctx.send(self.fetcher.dt(query))
