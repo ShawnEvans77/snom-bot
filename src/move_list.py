@@ -18,12 +18,16 @@ class MoveList:
         self.list = self.df['identifier'].values.tolist()
 
     def exists(self, move:str) -> bool:
+        '''Returns if the input move exists in the list of moves.'''
         return move.lower() in self.list
     
     def __contains__(self, move:str) -> bool:
+        '''Returns if the input move exists in the list of moves, dunder method for in operator.'''
         return move.lower() in self.list
     
-    def get_accuracy(self, move):
+    def get_accuracy(self, move:str) -> int:
+        '''Returns the accuracy of the input move it has one. If the move has no accuracy, like Swords Dance, this function returns
+        None.'''
 
         try: 
             return int(self.df[self.df['identifier'] == move]['accuracy'].values[0])
@@ -31,10 +35,16 @@ class MoveList:
             return None
 
     def get_generation(self, move:str)->str:
+        '''Returns the generation the input move originated from.'''
         return int(self.df[self.df['identifier'] == move]['generation_id'].values[0])
     
     def get_power(self, move:str)->str:
-        return int(self.df[self.df['identifier'] == move]['power'].values[0])
+        '''Returns the power of the input move.'''
+
+        try:
+            return int(self.df[self.df['identifier'] == move]['power'].values[0])
+        except ValueError:
+            return None
     
     def get_pp(self, move:str) -> str:
         return int(self.df[self.df['identifier'] == move]['pp'].values[0])
@@ -55,3 +65,7 @@ class MoveList:
                 closest_item = move
 
         return closest_item
+    
+x = MoveList()
+
+print(x.get_power("close-combat"))

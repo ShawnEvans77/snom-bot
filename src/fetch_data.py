@@ -92,11 +92,21 @@ class FetchData:
         answer += f"**{self.format_response(move)}** - "
 
         accuracy = move_list.get_accuracy(move)
+        power = move_list.get_power(move)
 
         answer += f"**Accuracy**: "
 
         if accuracy:
-            answer += f"{move_list.get_accuracy(move)} "
+            answer += f"{accuracy} "
+        else:
+            answer += "- "
+
+        answer += "| "
+
+        answer += f"**Power**: "
+
+        if power:
+            answer += f"{power} "
         else:
             answer += "- "
 
