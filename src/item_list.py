@@ -18,10 +18,10 @@ class ItemList:
         self.list = self.df['identifier'].values.tolist()
 
     def exists(self, item:str) -> str:
-        return item.lower() in self.list
-    
+        return not self.df[self.df['identifier']==item].empty
+
     def __contains__(self, item:str) -> str:
-        return item.lower() in self.list
+        return not self.df[self.df['identifier']==item].empty
 
     def close_match(self, incorrect:str) -> str:
 
