@@ -19,11 +19,11 @@ class Pokedex:
 
     def exists(self, pokemon:str)->bool:
         '''Returns if the input Pokemon exists, done without magic method dunder.'''
-        return not self.df[self.df['identifier']==pokemon].empty
+        return not self.df[self.df['identifier']==pokemon.lower()].empty
     
     def __contains__(self, pokemon:str)->bool:
         '''Returns if the input Pokemon exists, magic method that allows for interaction with Python in operator.'''
-        return not self.df[self.df['identifier']==pokemon].empty
+        return not self.df[self.df['identifier']==pokemon.lower()].empty
     
     def flavor_exists(self, pokemon: str) -> str:
         '''Returns if the list contains a flavor of the input Pokemon. Meaning, if user queries for 'Aegislash', 
