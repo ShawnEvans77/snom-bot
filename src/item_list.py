@@ -18,9 +18,11 @@ class ItemList:
         self.list = self.df['identifier'].values.tolist()
 
     def exists(self, item:str) -> str:
+        '''Returns if the input item exists in the item list.'''
         return not self.df[self.df['identifier']==item].empty
 
     def __contains__(self, item:str) -> str:
+        '''Returns if the input item exists in the item list, dunder magic method to implement 'in' functionality.'''
         return not self.df[self.df['identifier']==item].empty
 
     def close_match(self, incorrect:str) -> str:
