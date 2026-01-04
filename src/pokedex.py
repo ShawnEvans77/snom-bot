@@ -10,7 +10,6 @@ class Pokedex:
         THRESHOLD (int) - A crucial variable that assists our fuzzy matching algorithim. The higher it is, the more precise
         queries have to be for the 'did you mean this Pokemon' suggestion to work. 
     '''
-
     THRESHOLD = 80
 
     def __init__(self):
@@ -21,11 +20,11 @@ class Pokedex:
 
     def exists(self, pokemon:str)->bool:
         '''Returns if the input Pokemon exists, done without magic method dunder.'''
-        return pokemon.lower() in self.list
+        return not self.df[self.df['identifier']==pokemon].empty
     
     def __contains__(self, pokemon:str)->bool:
         '''Returns if the input Pokemon exists, magic method that allows for interaction with Python in operator.'''
-        return pokemon.lower() in self.list
+        return not self.df[self.df['identifier']==pokemon].empty
     
     def flavor_exists(self, pokemon: str) -> str:
         '''Returns if the list contains a flavor of the input Pokemon. Meaning, if user queries for 'Aegislash', 

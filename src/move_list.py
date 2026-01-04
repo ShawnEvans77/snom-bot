@@ -19,12 +19,12 @@ class MoveList:
 
     def exists(self, move:str) -> bool:
         '''Returns if the input move exists in the list of moves.'''
-        return move.lower() in self.list
+        return not self.df[self.df['identifier']==move].empty
     
     def __contains__(self, move:str) -> bool:
         '''Returns if the input move exists in the list of moves, dunder method for in operator.'''
-        return move.lower() in self.list
-    
+        return not self.df[self.df['identifier']==move].empty
+
     def get_accuracy(self, move:str) -> int:
         '''Returns the accuracy of the input move it has one. If the move has no accuracy, like Swords Dance, this function returns
         None.'''

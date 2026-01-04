@@ -18,13 +18,11 @@ class AbilityList:
 
     def exists(self, ability:str) -> str:
         '''Returns if the input ability exists in the list of abilities.'''
+        return not self.df[self.df['identifier']==ability].empty
 
-        return ability.lower() in self.list
-    
     def __contains__(self, ability:str) -> str:
         '''Returns if the input ability is in the ability list, dunder mother to support Python int.'''
-
-        return ability.lower() in self.list
+        return not self.df[self.df['identifier']==ability].empty
 
     def close_match(self, incorrect: str) -> str:
         '''Returns the closest match to the input string. Useful for situations where the user mistykes an item.'''
