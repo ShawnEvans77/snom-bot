@@ -169,6 +169,9 @@ class FetchData:
         '''Helper method to print bot output easily.'''
 
         return f"{FetchData.HR}\n" + output + f"{FetchData.HR}\n"
+    
+    def fuzzy(self, erroneous: str, correct: str) -> str:
+        return f"ummmm... {erroneous}? perhaps you meant {correct}?\n"
 
     def dt(self, query:str) -> str:
         '''Returns a query on a specified Pokemon item. Invokes the appropiate subroutine depending on if the input query
@@ -203,18 +206,18 @@ class FetchData:
 
         if FetchData.dex.close_match(query):
             closest_match = FetchData.dex.close_match(query)
-            return f"wth is {query} 😹. did u mean {closest_match}?\n" + self.dt_pokemon(closest_match, requests.get(FetchData.poke_url+closest_match))
+            return self.fuzzy(query, closest_match) + self.dt_pokemon(closest_match, requests.get(FetchData.poke_url+closest_match))
         
         if FetchData.items.close_match(query):
             closest_match = FetchData.items.close_match(query)
-            return f"wth is {query} 😹. did u mean {closest_match}?\n" + self.dt_item(closest_match, requests.get(FetchData.item_url+closest_match))
+            return self.fuzzy(query, closest_match) + self.dt_item(closest_match, requests.get(FetchData.item_url+closest_match))
         
         if FetchData.moves.close_match(query):
             closest_match = FetchData.moves.close_match(query)
-            return f"wth is {query} 😹. did u mean {closest_match}?\n" + self.dt_move(closest_match, FetchData.moves, requests.get(FetchData.move_url+closest_match))
+            return self.fuzzy(query, closest_match) + self.dt_move(closest_match, FetchData.moves, requests.get(FetchData.move_url+closest_match))
         
         if FetchData.abilities.close_match(query):
             closest_match = FetchData.abilities.close_match(query)
-            return f"wth is {query} 😹. did u mean {closest_match}?\n" + self.dt_ability(closest_match, FetchData.abilities, requests.get(FetchData.ability_url+closest_match))
+            return self.fuzzy(query, closest_match) + self.dt_ability(closest_match, FetchData.abilities, requests.get(FetchData.ability_url+closest_match))
 
-        return "i don't even know what this is gang try again 😹"
+        return f"i don't know what {query} is... check your spelling?"
