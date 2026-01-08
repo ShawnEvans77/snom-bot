@@ -865,7 +865,6 @@ id,identifier,generation_id,type_id,power,pp,accuracy,priority,target_id,damage_
 864,salt-cure,9,6,40,15,100,0,10,2,,,,,
 865,triple-dive,9,11,30,10,95,0,10,2,,,,,
 866,mortal-spin,9,4,30,15,100,0,11,2,,,,,
-867,doodle,9,1,0,10,100,0,10,1,,,,,
 868,fillet-away,9,1,0,10,,0,7,1,,,,,
 869,kowtow-cleave,9,17,85,10,,0,10,2,,,,,
 870,flower-trick,9,12,70,10,,0,10,2,,,,,
