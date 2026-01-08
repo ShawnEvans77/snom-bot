@@ -109,6 +109,8 @@ class FetchData:
         accuracy = move_list.get_accuracy(move)
         power = move_list.get_power(move)
 
+        json = response.json()
+
         answer += f"**Accuracy**: "
 
         if accuracy:
@@ -126,10 +128,15 @@ class FetchData:
             answer += "- "
 
         answer += "| "
+
+        answer += f"**Type:** "
+
+        type = json['type']['name'].title()
+        answer += f"_{type}_ | "
         
         answer += f"**PP**: {move_list.get_pp(move)} | "
         answer += f"**Generation**: {move_list.get_generation(move)} | "
-        answer += f"**Type**: {response.json()['damage_class']['name'].title()}"
+        answer += f"**Category**: {response.json()['damage_class']['name'].title()}"
 
         answer += "\n"
 
