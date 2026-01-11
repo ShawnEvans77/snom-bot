@@ -7,6 +7,8 @@ Feel free to clone the source code to set up your own version of the bot.
 The bot scrapes PokeAPI data to provide updated information on Pokemon Base Stat Totals. Useful if you have a Discord Server
 based around Pokemon Showdown, and you want your own lightweight port of the website's commands. The primary information returned for queries on a Pokemon species are their stats, abilities, and type.
 
+The bot is currently hosted 24/7 using the Render Cloud Hosting Platform.
+
 ## Installation
 
 Feel free to install her at this [link](https://discord.com/oauth2/authorize?client_id=1455036822014001168&permissions=68608&integration_type=0&scope=bot). The bot can run in servers or direct messages.
@@ -21,7 +23,7 @@ docker build -t marnie .
 docker run marnie
 ```
 
-Don't be silly and commit your .env publicly! 
+.env is obviously .gitignore'd by default. 
 
 ## Usage
 
