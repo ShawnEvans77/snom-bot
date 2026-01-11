@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 import os
 import fetch_data as f
 import bulbapedia as bp
+import server
 
 class Bot:
     '''The Bot Class represents your Discord Bot. Start it using the run() function. It reads the proper token from the .env file.'''
@@ -44,4 +45,5 @@ class Bot:
     def start(self):
         '''Executes the bot.'''
 
+        server.keep_alive()
         self.bot.run(self.token, log_handler=self.handler, log_level=logging.DEBUG)
